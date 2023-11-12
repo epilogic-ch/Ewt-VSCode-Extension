@@ -36,7 +36,7 @@
 		{
 			"name": "Script Type",
 			"scope": [
-				"storage.type.ts.ewts"
+				"storage.type.ewts"
 			],
 			"settings": {
 				"foreground": "#569CD6"
@@ -63,10 +63,10 @@
 		{
 			"name": "Script Import",
 			"scope": [
-				"keyword.control.directive.ewts"
+				"keyword.control.import.ewts"
 			],
 			"settings": {
-				"foreground": "#9B9B9B"
+				"foreground": "#C586C0"
 			}
 		},
 		{
@@ -81,7 +81,7 @@
 		{
 			"name": "Script Sharp Context",
 			"scope": [
-				"ewts.sharpcontext"
+				"variable.other.readwrite.ewts"
 			],
 			"settings": {
 				"foreground": "#FFD68F"
@@ -90,7 +90,7 @@
 		{
 			"name": "Script Reserved",
 			"scope": [
-				"ewts.reserved",
+				"variable.language.ewts",
 				"variable.language.this.ewts",
 				"variable.parameter.ewts"
 			],
@@ -101,10 +101,10 @@
 		{
 			"name": "Script Suffix",
 			"scope": [
-				"ewts.suffix"
+				"punctuation.definition.string.ewts"
 			],
 			"settings": {
-				"foreground": "#E8C9BB"
+				"foreground": "#9B9B9B"
 			}
 		},
 		{

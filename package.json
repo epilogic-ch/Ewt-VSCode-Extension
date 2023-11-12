@@ -2,7 +2,7 @@
   "name": "ewt-extension",
   "displayName": "Ewt VSCode Extension",
   "description": "VSCode Extension for Ewt script highlighting and debugging",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": {
     "name": "epilogic sàrl"
   },
@@ -79,23 +79,23 @@
       "editor/title/run": [
         {
           "command": "extension.mock-debug.runEditorContents",
-          "when": "resourceLangId == EwtScript",
+          "when": "resourceLangId == ewts",
           "group": "navigation@1"
         },
         {
           "command": "extension.mock-debug.debugEditorContents",
-          "when": "resourceLangId == EwtScript",
+          "when": "resourceLangId == ewts",
           "group": "navigation@2"
         }
       ],
       "commandPalette": [
         {
           "command": "extension.mock-debug.debugEditorContents",
-          "when": "resourceLangId == EwtScript"
+          "when": "resourceLangId == ewts"
         },
         {
           "command": "extension.mock-debug.runEditorContents",
-          "when": "resourceLangId == EwtScript"
+          "when": "resourceLangId == ewts"
         }
       ],
       "debug/variables/context": [
@@ -127,14 +127,14 @@
     ],
     "breakpoints": [
       {
-        "language": "EwtScript"
+        "language": "ewts"
       }
     ],
     "debuggers": [
       {
         "type": "mock",
         "languages": [
-          "EwtScript"
+          "ewts"
         ],
         "label": "Mock Debug",
         "program": "./out/debugAdapter.js",
@@ -242,8 +242,8 @@
     ],
     "languages": [{
       "id": "ewts",
-      "aliases": ["EwtScript", "ewts"],
-      "extensions": [".ewts",".ewtsub",".script",".subscript"],
+      "aliases": ["ewts"],
+      "extensions": [".ewts", ".ewtsub", ".script", ".subscript"],
       "configuration": "./language-configuration.json"
     }],
     "grammars": [{

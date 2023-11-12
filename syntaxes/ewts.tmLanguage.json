@@ -1,6 +1,6 @@
 {
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-	"name": "EwtScript",
+	"name": "ewts",
 	"patterns": [
 		{ "include": "#annotations" },
 		{ "include": "#comments" },
@@ -51,7 +51,7 @@
 		},
 		"suffix": {
 			"patterns": [{
-				"name": "ewts.suffix",
+				"name": "punctuation.definition.string.ewts",
 				"match": "::(raw|crlf|[TtQqXx])"
 			}]
 		},
@@ -63,7 +63,7 @@
 		},
 		"reserved": {
 			"patterns": [{
-				"name": "ewts.reserved",
+				"name": "variable.language.ewts",
 				"match": "\\b((this)|(true)|(false)|(null))\\b",
 				"captures": {
 				  "2": { "name": "variable.language.this.ewts" },
@@ -79,7 +79,7 @@
 		},
 		"imports": {
 			"patterns": [{
-				"name": "keyword.control.directive.ewts",
+				"name": "keyword.control.import.ewts",
 				"match": "\\b(import)\\b"
 			}]
 		},
@@ -91,13 +91,13 @@
 		},
 		"types": {
 			"patterns": [{
-				"name": "storage.type.ts.ewts",
+				"name": "storage.type.ewts",
 				"match": "\\(\\b(string|number|date|time|timestamp|file)\\b\\)"
 			}]
 		},
 		"sharpcontext": {
 			"patterns": [{
-				"name": "ewts.sharpcontext",
+				"name": "variable.other.readwrite.ewts",
 				"match": "#(?:[a-zA-Z][a-zA-Z0-9]*)(?:\\[(?:\\d+|[a-zA-Z0-9]{8}-?[a-zA-Z0-9]{4}-?[a-zA-Z0-9]{4}-?[a-zA-Z0-9]{4}-?[a-zA-Z0-9]{12})\\])?(?:\\.(?:[a-zA-Z][a-zA-Z0-9]*)(?:\\[(?:\\d+|[a-zA-Z0-9]{8}-?[a-zA-Z0-9]{4}-?[a-zA-Z0-9]{4}-?[a-zA-Z0-9]{4}-?[a-zA-Z0-9]{12})\\])?){0,2}"
 			}]
 		},

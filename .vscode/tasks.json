@@ -27,6 +27,13 @@
             "problemMatcher": "$esbuild-watch",
             "isBackground": true,
             "label": "npm: watch web"
+        },
+        {
+            "type": "npm",
+            "script": "package",
+            "problemMatcher": [],
+            "label": "npm: package",
+            "detail": "vsce package"
         }
     ]
 }
