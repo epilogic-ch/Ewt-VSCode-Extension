@@ -1,2 +1,2 @@
-vsce package --baseContentUrl file:/// --baseImagesUrl file:///
+vsce package
 pause
