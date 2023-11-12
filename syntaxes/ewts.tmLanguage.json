@@ -1,0 +1,172 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "EwtScript",
+	"patterns": [
+		{ "include": "#annotations" },
+		{ "include": "#comments" },
+		{ "include": "#strings" },
+		{ "include": "#suffix" },
+		{ "include": "#numbers" },
+		{ "include": "#keywords" },
+		{ "include": "#libraries" },
+		{ "include": "#variables" },
+		{ "include": "#reserved" },
+		{ "include": "#ctrl-statements" },
+		{ "include": "#types" },
+		{ "include": "#regions" },
+		{ "include": "#imports" },
+		{ "include": "#sharpcontext" },
+		{ "include": "#operators" },
+		{ "include": "#functions" }
+	],
+	"repository": {
+		"annotations": {
+			"patterns": [{
+				"match": "^@[A-Za-z][A-Za-z0-9]*.*$",
+				"name": "keyword.control.directive.ewts"
+			}]
+		},
+		"operators": {
+			"patterns": [{
+				"name": "keyword.operator.ewts",
+				"match": "(=|==|\\!=|\\+|\\+=|\\-|\\-=|\\*|\\*=|/|/=|&|&=|&&|\\||\\|\\||<|<=|>|>=|:|\\?|\\+\\+|\\-\\-|~|\\!|%)"
+			}]
+		},
+		"libraries": {
+			"patterns": [{
+				"match": "(\\$[A-Za-z][A-Za-z0-9]*\\.[A-Za-z][A-Za-z0-9]*)\\(",
+				"captures": {
+				  "1": { "name": "entity.name.function.ewts" }
+				}
+			}]
+		},
+		"keywords": {
+			"patterns": [{
+				"name": "keyword.control.ewts",
+				"match": "\\b(if|else|while|for|switch|case|default|(typeof))\\b",
+				"captures": {
+				  "2": { "name": "variable.language.typeof.ewts" }
+				}
+			}]
+		},
+		"suffix": {
+			"patterns": [{
+				"name": "ewts.suffix",
+				"match": "::(raw|crlf|[TtQqXx])"
+			}]
+		},
+		"variables": {
+			"patterns": [{
+				"name": "storage.type.ewts",
+				"match": "\\b(var|function|export|as)\\b"
+			}]
+		},
+		"reserved": {
+			"patterns": [{
+				"name": "ewts.reserved",
+				"match": "\\b((this)|(true)|(false)|(null))\\b",
+				"captures": {
+				  "2": { "name": "variable.language.this.ewts" },
+				  "5": { "name": "variable.parameter.ewts" }
+				}
+			}]
+		},
+		"regions": {
+			"patterns": [{
+				"name": "keyword.preprocessor.region.ewts",
+				"match": "\\b(context|policy|region)\\b"
+			}]
+		},
+		"imports": {
+			"patterns": [{
+				"name": "keyword.control.directive.ewts",
+				"match": "\\b(import)\\b"
+			}]
+		},
+		"ctrl-statements": {
+			"patterns": [{
+				"name": "keyword.control.flow.ewts",
+				"match": "\\b(throw|try|catch|finally|return|continue|break|exit)\\b"
+			}]
+		},
+		"types": {
+			"patterns": [{
+				"name": "storage.type.ts.ewts",
+				"match": "\\(\\b(string|number|date|time|timestamp|file)\\b\\)"
+			}]
+		},
+		"sharpcontext": {
+			"patterns": [{
+				"name": "ewts.sharpcontext",
+				"match": "#(?:[a-zA-Z][a-zA-Z0-9]*)(?:\\[(?:\\d+|[a-zA-Z0-9]{8}-?[a-zA-Z0-9]{4}-?[a-zA-Z0-9]{4}-?[a-zA-Z0-9]{4}-?[a-zA-Z0-9]{12})\\])?(?:\\.(?:[a-zA-Z][a-zA-Z0-9]*)(?:\\[(?:\\d+|[a-zA-Z0-9]{8}-?[a-zA-Z0-9]{4}-?[a-zA-Z0-9]{4}-?[a-zA-Z0-9]{4}-?[a-zA-Z0-9]{12})\\])?){0,2}"
+			}]
+		},
+		"comments": {
+			"patterns": [{
+				"begin": "/\\*",
+				"end": "\\*/",
+				"name": "comment.block.documentation.ewts"
+			},{
+				"begin": "//",
+				"end": "\\n",
+				"name": "comment.line.double-slash.ewts"
+			}]
+		},
+
+		
+		"functions": {
+			"patterns": [{
+				"match": "([^0-9\\$\\s\\t\\.,;:=\\!\\?\\r\\n\\+\\-\\*/\\(\\[\\{\\)\\]\\}%<>\"'`´&\\|@#\\^\\~\\\\][^\\$\\s\\t\\.,;:=\\!\\?\\r\\n\\+\\-\\*/\\(\\[\\{\\)\\]\\}%<>\"'`´&\\|@#\\^\\~\\\\]*)\\s*\\(",
+				"captures": {
+				  "1": { "name": "entity.name.function.ewts" }
+				}
+			}]
+		},
+		"strings": {
+			"patterns": [{
+				"name": "string.quoted.double.ewts",
+				"begin": "\"",
+				"end": "\"",
+				"beginCaptures": { "0": { "name": "ewts.punctuation" } },
+				"endCaptures": { "0": { "name": "ewts.punctuation" } },
+				"patterns": [
+					{
+						"name": "constant.character.escape.ewts",
+						"match": "\\\\."
+					}
+				]
+			},{
+				"name": "string.quoted.single.ewts",
+				"begin": "'",
+				"end": "'",
+				"beginCaptures": { "0": { "name": "ewts.punctuation" } },
+				"endCaptures": { "0": { "name": "ewts.punctuation" } },
+				"patterns": [
+					{
+						"name": "constant.character.escape.ewts",
+						"match": "\\\\."
+					}
+				]
+			},{
+				"name": "string.template.ewts",
+				"begin": "`",
+				"end": "`",
+				"beginCaptures": { "0": { "name": "ewts.punctuation" } },
+				"endCaptures": { "0": { "name": "ewts.punctuation" } },
+				"patterns": [
+					{
+						"name": "constant.character.escape.ewts",
+						"match": "\\\\."
+					}
+				]
+			}]
+		},
+		"numbers": {
+			"patterns": [{
+				"name": "constant.numeric.decimal.ewts",
+				"match": "[0-9]"
+			}]
+		}
+	},
+	"scopeName": "source.ewts"
+}
