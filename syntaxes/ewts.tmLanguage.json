@@ -58,7 +58,7 @@
 		"variables": {
 			"patterns": [{
 				"name": "storage.type.ewts",
-				"match": "\\b(var|function|export|as)\\b"
+				"match": "\\b(var|const|function|export|as)\\b"
 			}]
 		},
 		"reserved": {
@@ -164,7 +164,7 @@
 		"numbers": {
 			"patterns": [{
 				"name": "constant.numeric.decimal.ewts",
-				"match": "[0-9]"
+				"match": "\\b([0-9])\\b"
 			}]
 		}
 	},
