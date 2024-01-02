@@ -23,9 +23,11 @@ export function activateMockDebug(context: vscode.ExtensionContext, factory?: vs
 			if (targetResource) {
 				vscode.debug.startDebugging(undefined, {
 					type: 'mock',
-					name: 'Run File',
+					name: 'Ewt debugger',
 					request: 'launch',
-					program: targetResource.fsPath
+					program: targetResource.fsPath,
+					stopOnEntry: true,
+					debugServer: 8000
 				},
 					{ noDebug: true }
 				);
@@ -42,7 +44,8 @@ export function activateMockDebug(context: vscode.ExtensionContext, factory?: vs
 					name: 'Debug File',
 					request: 'launch',
 					program: targetResource.fsPath,
-					stopOnEntry: true
+					stopOnEntry: true,
+					debugServer: 8000
 				});
 			}
 		}),
@@ -73,19 +76,25 @@ export function activateMockDebug(context: vscode.ExtensionContext, factory?: vs
 					name: "Dynamic Launch",
 					request: "launch",
 					type: "mock",
-					program: "${file}"
+					program: "${file}",
+					stopOnEntry: true,
+					debugServer: 8000
 				},
 				{
 					name: "Another Dynamic Launch",
 					request: "launch",
 					type: "mock",
-					program: "${file}"
+					program: "${file}",
+					stopOnEntry: true,
+					debugServer: 8000
 				},
 				{
 					name: "Mock Launch",
 					request: "launch",
 					type: "mock",
-					program: "${file}"
+					program: "${file}",
+					stopOnEntry: true,
+					debugServer: 8000
 				}
 			];
 		}
@@ -169,6 +178,7 @@ class MockConfigurationProvider implements vscode.DebugConfigurationProvider {
 				config.request = 'launch';
 				config.program = '${file}';
 				config.stopOnEntry = true;
+				config.debugServer = 8000;
 			}
 		}
 

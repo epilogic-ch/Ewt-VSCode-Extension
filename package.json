@@ -2,7 +2,7 @@
   "name": "ewt-extension",
   "displayName": "Ewt VSCode Extension",
   "description": "VSCode Extension for Ewt script highlighting and debugging",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": {
     "name": "epilogic sàrl"
   },
@@ -109,14 +109,14 @@
       {
         "command": "extension.mock-debug.debugEditorContents",
         "title": "Debug File",
-        "category": "Mock Debug",
+        "category": "Ewt Debugger",
         "enablement": "!inDebugMode",
         "icon": "$(debug-alt)"
       },
       {
         "command": "extension.mock-debug.runEditorContents",
         "title": "Run File",
-        "category": "Mock Debug",
+        "category": "Ewt Debugger",
         "enablement": "!inDebugMode",
         "icon": "$(play)"
       },
@@ -136,7 +136,7 @@
         "languages": [
           "ewts"
         ],
-        "label": "Mock Debug",
+        "label": "Ewt Debugger",
         "program": "./out/debugAdapter.js",
         "runtime": "node",
         "configurationAttributes": {
@@ -148,7 +148,7 @@
               "program": {
                 "type": "string",
                 "description": "Absolute path to a text file.",
-                "default": "${workspaceFolder}/${command:AskForProgramName}"
+                "default": "Ewt application"
               },
               "stopOnEntry": {
                 "type": "boolean",
@@ -173,6 +173,11 @@
                   "show fake compile error to user",
                   "do not show fake compile error to user"
                 ]
+              },
+              "debugServer": {
+                "type": "integer",
+                "description": "Port of socket which is listening for DAP requests.",
+                "default": 8000
               }
             }
           },
@@ -184,7 +189,7 @@
               "program": {
                 "type": "string",
                 "description": "Absolute path to a text file.",
-                "default": "${workspaceFolder}/${command:AskForProgramName}"
+                "default": "Ewt application"
               },
               "stopOnEntry": {
                 "type": "boolean",
@@ -217,27 +222,26 @@
           {
             "type": "mock",
             "request": "launch",
-            "name": "Ask for file name",
-            "program": "${workspaceFolder}/${command:AskForProgramName}",
-            "stopOnEntry": true
+            "name": "Ewt debugger",
+            "program": "Ewt application",
+            "stopOnEntry": true,
+            "debugServer": 8000
           }
         ],
         "configurationSnippets": [
           {
-            "label": "Mock Debug: Launch",
+            "label": "Ewt Debugger: Launch",
             "description": "A new configuration for 'debugging' a user selected Ewt script file.",
             "body": {
               "type": "mock",
               "request": "launch",
-              "name": "Ask for file name",
-              "program": "^\"\\${workspaceFolder}/\\${command:AskForProgramName}\"",
-              "stopOnEntry": true
+              "name": "Ewt debugger",
+              "program": "Ewt application",
+              "stopOnEntry": true,
+              "debugServer": 8000
             }
           }
-        ],
-        "variables": {
-          "AskForProgramName": "extension.mock-debug.getProgramName"
-        }
+        ]
       }
     ],
     "languages": [{
