@@ -22,7 +22,7 @@
 	"repository": {
 		"annotations": {
 			"patterns": [{
-				"match": "^@[A-Za-z][A-Za-z0-9]*.*$",
+				"match": "@[A-Za-z][A-Za-z0-9]*",
 				"name": "keyword.control.directive.ewts"
 			}]
 		},
@@ -86,7 +86,7 @@
 		"ctrl-statements": {
 			"patterns": [{
 				"name": "keyword.control.flow.ewts",
-				"match": "\\b(throw|try|catch|finally|return|continue|break|exit)\\b"
+				"match": "\\b(in|throw|try|catch|finally|return|continue|break|exit)\\b"
 			}]
 		},
 		"types": {
@@ -98,7 +98,7 @@
 		"sharpcontext": {
 			"patterns": [{
 				"name": "variable.other.readwrite.ewts",
-				"match": "#(?:[a-zA-Z][a-zA-Z0-9]*)(?:\\[(?:\\d+|[a-zA-Z0-9]{8}-?[a-zA-Z0-9]{4}-?[a-zA-Z0-9]{4}-?[a-zA-Z0-9]{4}-?[a-zA-Z0-9]{12})\\])?(?:\\.(?:[a-zA-Z][a-zA-Z0-9]*)(?:\\[(?:\\d+|[a-zA-Z0-9]{8}-?[a-zA-Z0-9]{4}-?[a-zA-Z0-9]{4}-?[a-zA-Z0-9]{4}-?[a-zA-Z0-9]{12})\\])?){0,2}"
+				"match": "\\$\\$|#(?:[a-zA-Z][a-zA-Z0-9]*)(?:\\[(?:\\d+|#?[a-zA-Z][a-zA-Z0-9]*)\\])?(?:\\.(?:[a-zA-Z][a-zA-Z0-9]*)(?:\\[(?:\\d+|#?[a-zA-Z][a-zA-Z0-9]*)\\])?){0,2}"
 			}]
 		},
 		"comments": {

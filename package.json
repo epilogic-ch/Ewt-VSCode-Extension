@@ -2,7 +2,7 @@
   "name": "ewt-extension",
   "displayName": "Ewt VSCode Extension",
   "description": "VSCode Extension for Ewt script highlighting and debugging",
-  "version": "0.0.4",
+  "version": "0.0.7",
   "author": {
     "name": "epilogic sàrl"
   },
