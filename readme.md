@@ -13,8 +13,8 @@ The debugger connects to Ewt using a socket. It is based on Debug Adapter Protoc
 
 In order to debug an Ewt application through VS Code, please do following:
 
-1. Open Ewt application folder in VS Code
-2. Edit `config.xml` file in order to enable `dev` mode and open a port for debugger socket.
+1.  Open Ewt application folder in VS Code
+2.  Edit `config.xml` file in order to enable `dev` mode and open a port for debugger socket.
     ```xml
     <?xml version="1.0" encoding="UTF-8"?>
     <config>
@@ -27,11 +27,12 @@ In order to debug an Ewt application through VS Code, please do following:
       </admin>
       ...
     ```
-3. Save modifications and start application server. Just reset Ewt application if application server is already running.
-4. In VS Code, open pannel "Run and Debug" (Ctrl + Shift + D). The very first time, you'll have to create a launch configuration.
-   Click on `create a launch json file`  
-   ![Create a launch.json file](images/vscode-debugger-02.png)
-5. Adapt `launch.json` file as following
+3.  Save modifications and start application server. Just reset Ewt application if application
+    server is already running.
+4.  In VS Code, open pannel "Run and Debug" (Ctrl + Shift + D). The very first time, you'll
+    have to create a launch configuration. Click on `create a launch json file`  
+    ![Create a launch.json file](images/vscode-debugger-02.png)
+5.  Adapt `launch.json` file as following
     ```json
     {
         "version": "0.2.0",
@@ -42,13 +43,15 @@ In order to debug an Ewt application through VS Code, please do following:
                 "name": "Ewt debugger",
                 "program": "Mon application",
                 "stopOnEntry": true,
-                "debugServer": 8000
+                "debugServer": 8000,
+                "scriptsRoot": "${workspaceFolder}\\scripts"
             }
         ]
     }
     ```
-6. Save modification. Now you should see a dropdown with label "Ewt debugger" in the panel  
-   ![Run and Debug](images/vscode-debugger-03.png)  
-   Click on the green arrow and start debugger.
+    You must fill the `scriptsRoot` property with absolute path of scripts directory.
+6.  Save modification. Now you should see a dropdown with label "Ewt debugger" in the panel  
+    ![Run and Debug](images/vscode-debugger-03.png)  
+    Click on the green arrow and start debugger.
 
 

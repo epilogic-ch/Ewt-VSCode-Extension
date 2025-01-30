@@ -2,7 +2,7 @@
   "name": "ewt-extension",
   "displayName": "Ewt VSCode Extension",
   "description": "VSCode Extension for Ewt script highlighting and debugging",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "author": {
     "name": "epilogic sàrl"
   },
@@ -178,6 +178,11 @@
                 "type": "integer",
                 "description": "Port of socket which is listening for DAP requests.",
                 "default": 8000
+              },
+              "scriptsRoot": {
+                "type": "string",
+                "description": "Absolute path to application scripts folder. This parameter is required in order to make Ewt able to compute logical script file names.",
+                "default": "${workspaceFolder}\\scripts"
               }
             }
           },
@@ -225,7 +230,8 @@
             "name": "Ewt debugger",
             "program": "Ewt application",
             "stopOnEntry": true,
-            "debugServer": 8000
+            "debugServer": 8000,
+            "scriptsRoot": "${workspaceFolder}\\scripts"
           }
         ],
         "configurationSnippets": [
@@ -238,7 +244,8 @@
               "name": "Ewt debugger",
               "program": "Ewt application",
               "stopOnEntry": true,
-              "debugServer": 8000
+              "debugServer": 8000,
+              "scriptsRoot": "${workspaceFolder}\\scripts"
             }
           }
         ]

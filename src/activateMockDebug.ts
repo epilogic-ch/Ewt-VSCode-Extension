@@ -27,7 +27,8 @@ export function activateMockDebug(context: vscode.ExtensionContext, factory?: vs
 					request: 'launch',
 					program: targetResource.fsPath,
 					stopOnEntry: true,
-					debugServer: 8000
+					debugServer: 8000,
+					scriptsRoot: "${workspaceFolder}\\scripts"
 				},
 					{ noDebug: true }
 				);
@@ -45,7 +46,8 @@ export function activateMockDebug(context: vscode.ExtensionContext, factory?: vs
 					request: 'launch',
 					program: targetResource.fsPath,
 					stopOnEntry: true,
-					debugServer: 8000
+					debugServer: 8000,
+					scriptsRoot: "${workspaceFolder}\\scripts"
 				});
 			}
 		}),
@@ -78,7 +80,8 @@ export function activateMockDebug(context: vscode.ExtensionContext, factory?: vs
 					type: "mock",
 					program: "${file}",
 					stopOnEntry: true,
-					debugServer: 8000
+					debugServer: 8000,
+					scriptsRoot: "${workspaceFolder}\\scripts"
 				},
 				{
 					name: "Another Dynamic Launch",
@@ -86,7 +89,8 @@ export function activateMockDebug(context: vscode.ExtensionContext, factory?: vs
 					type: "mock",
 					program: "${file}",
 					stopOnEntry: true,
-					debugServer: 8000
+					debugServer: 8000,
+					scriptsRoot: "${workspaceFolder}\\scripts"
 				},
 				{
 					name: "Mock Launch",
@@ -94,7 +98,8 @@ export function activateMockDebug(context: vscode.ExtensionContext, factory?: vs
 					type: "mock",
 					program: "${file}",
 					stopOnEntry: true,
-					debugServer: 8000
+					debugServer: 8000,
+					scriptsRoot: "${workspaceFolder}\\scripts"
 				}
 			];
 		}
@@ -112,7 +117,6 @@ export function activateMockDebug(context: vscode.ExtensionContext, factory?: vs
 	// here we match only Mock "variables", that are words starting with an '$'
 	context.subscriptions.push(vscode.languages.registerEvaluatableExpressionProvider('script', {
 		provideEvaluatableExpression(document: vscode.TextDocument, position: vscode.Position): vscode.ProviderResult<vscode.EvaluatableExpression> {
-
 			const VARIABLE_REGEXP = /\$[a-z][a-z0-9]*/ig;
 			const line = document.lineAt(position.line).text;
 
@@ -130,9 +134,7 @@ export function activateMockDebug(context: vscode.ExtensionContext, factory?: vs
 
 	// override VS Code's default implementation of the "inline values" feature"
 	context.subscriptions.push(vscode.languages.registerInlineValuesProvider('script', {
-
 		provideInlineValues(document: vscode.TextDocument, viewport: vscode.Range, context: vscode.InlineValueContext) : vscode.ProviderResult<vscode.InlineValue[]> {
-
 			const allValues: vscode.InlineValue[] = [];
 
 			for (let l = viewport.start.line; l <= context.stoppedLocation.end.line; l++) {
@@ -168,7 +170,6 @@ class MockConfigurationProvider implements vscode.DebugConfigurationProvider {
 	 * e.g. add all missing attributes to the debug configuration.
 	 */
 	resolveDebugConfiguration(folder: WorkspaceFolder | undefined, config: DebugConfiguration, token?: CancellationToken): ProviderResult<DebugConfiguration> {
-
 		// if launch.json is missing or empty
 		if (!config.type && !config.request && !config.name) {
 			const editor = vscode.window.activeTextEditor;
@@ -179,6 +180,7 @@ class MockConfigurationProvider implements vscode.DebugConfigurationProvider {
 				config.program = '${file}';
 				config.stopOnEntry = true;
 				config.debugServer = 8000;
+				config.scriptsRoot = "${workspaceFolder}\\scripts";
 			}
 		}
 
@@ -218,7 +220,6 @@ function pathToUri(path: string) {
 }
 
 class InlineDebugAdapterFactory implements vscode.DebugAdapterDescriptorFactory {
-
 	createDebugAdapterDescriptor(_session: vscode.DebugSession): ProviderResult<vscode.DebugAdapterDescriptor> {
 		return new vscode.DebugAdapterInlineImplementation(new MockDebugSession(workspaceFileAccessor));
 	}
